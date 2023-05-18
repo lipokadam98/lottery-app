@@ -17,7 +17,10 @@ export class LottoGridComponent implements OnInit {
   panelItemCount = 49;
 
   @Input()
-  index: number | undefined;
+  index?: number;
+
+  @Input()
+  markCount = 6;
 
   numbers: LottoItem[] = [];
 
@@ -30,11 +33,8 @@ export class LottoGridComponent implements OnInit {
     }
   }
 
-  checkNum(index: number) {
-    let lottoItem = this.numbers[index - 1];
-    if (lottoItem) {
-      lottoItem.highlighted = !lottoItem.highlighted;
-    }
+  checkNum(item: LottoItem) {
+    item.highlighted = !item.highlighted;
   }
 
   clearPanel() {
@@ -46,15 +46,14 @@ export class LottoGridComponent implements OnInit {
   generateRandom() {
     this.clearPanel();
 
-    const randomNumbers = this.gameService.generateRandomNumbers(1, 49);
+    const randomNumbers = this.gameService.generateRandomNumbers(1, this.panelItemCount, this.markCount);
 
-    randomNumbers.forEach(number => {
-      this.numbers.forEach(lottoItem => {
-        if (lottoItem.index === number) {
-          lottoItem.highlighted = true;
-        }
-      })
-    });
+    for (const number of randomNumbers) {
+      const lottoItem = this.numbers.find(item => item.index === number);
+      if (lottoItem) {
+        lottoItem.highlighted = true;
+      }
+    }
   }
 
   play() {

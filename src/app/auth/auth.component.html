@@ -31,14 +31,10 @@
           <mat-error *ngIf="authFormGroup.get('password')?.touched && authFormGroup.get('password')?.invalid">Password
             is required
           </mat-error>
-
         </mat-form-field>
 
         <button mat-raised-button type="submit" [disabled]="authFormGroup.invalid">Login</button>
       </div>
     </div>
-
-
   </form>
-  <hr>
 </section>

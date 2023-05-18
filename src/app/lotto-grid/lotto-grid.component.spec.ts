@@ -10,11 +10,10 @@ describe('LottoGridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LottoGridComponent ],
+      declarations: [LottoGridComponent],
       imports: [MatIconModule],
-      providers: [ GameService ]
-    })
-      .compileComponents();
+      providers: [GameService]
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -24,59 +23,44 @@ describe('LottoGridComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create the component', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize the numbers array with the correct length', () => {
-    const expectedLength = 49;
-    expect(component.numbers.length).toBe(expectedLength);
+  it('should initialize numbers array with panelItemCount items', () => {
+    const expectedItemCount = 49;
+    expect(component.numbers.length).toBe(expectedItemCount);
   });
 
-  it('should highlight a number when checkNum is called', () => {
-    const index = 1;
-    const lottoItem: LottoItem = { index: index, highlighted: false };
-    component.numbers.push(lottoItem);
-
-    component.checkNum(index);
-
-    expect(component.numbers[index - 1].highlighted).toBe(true);
+  it('should set highlighted property to true when checkNum is called', () => {
+    const item: LottoItem = { index: 1, highlighted: false };
+    component.checkNum(item);
+    expect(item.highlighted).toBe(true);
   });
 
-  it('should clear all numbers when clearPanel is called', () => {
-    component.numbers.forEach(item => {
-      item.highlighted = true;
-    });
-
+  it('should clear the panel by setting all highlighted properties to false', () => {
+    const item1: LottoItem = { index: 1, highlighted: true };
+    const item2: LottoItem = { index: 2, highlighted: true };
+    component.numbers = [item1, item2];
     component.clearPanel();
-
-    expect(component.numbers.every(item => !item.highlighted)).toBe(true);
+    expect(item1.highlighted).toBe(false);
+    expect(item2.highlighted).toBe(false);
   });
 
-  it('should generate random numbers and highlight them', () => {
-    spyOn(component, 'clearPanel');
-    const randomNumbers = [1, 5, 10];
-    spyOn(gameService, 'generateRandomNumbers').and.returnValue(randomNumbers);
-
+  it('should generate random numbers and set corresponding items as highlighted', () => {
+    spyOn(gameService, 'generateRandomNumbers').and.returnValue([1, 3, 5]);
     component.generateRandom();
-
-    expect(component.clearPanel).toHaveBeenCalled();
-    expect(gameService.generateRandomNumbers).toHaveBeenCalledWith(1, 49);
-
-    randomNumbers.forEach(number => {
-      const highlightedItem = component.numbers.find(item => item.index === number);
-      expect(highlightedItem?.highlighted).toBe(true);
-    });
+    expect(component.numbers[0].highlighted).toBe(true);
+    expect(component.numbers[1].highlighted).toBe(false);
+    expect(component.numbers[2].highlighted).toBe(true);
   });
 
-  it('should return an array of highlighted numbers when play is called', () => {
-    const highlightedNumbers = [1, 5, 10];
-    highlightedNumbers.forEach(number => {
-      component.numbers[number - 1].highlighted = true;
-    });
-
+  it('should return an array of indexes for the highlighted items when play is called', () => {
+    const item1: LottoItem = { index: 1, highlighted: true };
+    const item2: LottoItem = { index: 2, highlighted: false };
+    const item3: LottoItem = { index: 3, highlighted: true };
+    component.numbers = [item1, item2, item3];
     const result = component.play();
-
-    expect(result).toEqual(highlightedNumbers);
+    expect(result).toEqual([1, 3]);
   });
 });

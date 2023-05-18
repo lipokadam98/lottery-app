@@ -5,7 +5,7 @@ import {Injectable} from '@angular/core';
 })
 export class GameService {
 
-  generateRandomNumbers(min: number, max: number, numberLength: number = 6): number[] {
+  generateRandomNumbers(min: number, max: number, numberLength: number): number[] {
     const randomNumbers: number[] = [];
 
     while (randomNumbers.length < numberLength) {

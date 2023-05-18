@@ -13,15 +13,14 @@ export interface PanelSelections {
 })
 export class HomeComponent implements OnInit {
 
-  @ViewChildren(LottoGridComponent) gridComponents: QueryList<LottoGridComponent> | undefined;
-
+  @ViewChildren(LottoGridComponent) gridComponents?: QueryList<LottoGridComponent>;
   panelSelections: PanelSelections[] = [];
   panels: number[] = [];
-
-  numberOfMarks = 6;
+  readonly panelCount = 4;
+  readonly numberOfMarks = 6;
 
   ngOnInit(): void {
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= this.panelCount; i++) {
       this.panels.push(i);
     }
   }

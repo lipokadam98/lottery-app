@@ -1,8 +1,6 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {AuthComponent} from './auth.component';
-import {Router} from '@angular/router';
 import {UserListService} from '../services/user/user-list.service';
-import {AuthService} from '../services/auth/auth.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatIconModule} from "@angular/material/icon";
@@ -14,9 +12,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 describe('AuthComponent', () => {
   let component: AuthComponent;
   let fixture: ComponentFixture<AuthComponent>;
-  let router: Router;
   let userListService: UserListService;
-  let authService: AuthService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -39,9 +35,7 @@ describe('AuthComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AuthComponent);
     component = fixture.componentInstance;
-    router = TestBed.inject(Router);
     userListService = TestBed.inject(UserListService);
-    authService = TestBed.inject(AuthService);
     fixture.detectChanges();
   });
 

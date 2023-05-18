@@ -13,7 +13,6 @@ import {AuthService} from "../services/auth/auth.service";
 export class AuthComponent implements OnInit, OnDestroy {
   authFormGroup: FormGroup = new FormGroup({});
   authSub = new Subscription();
-
   users: User[] = [];
 
   constructor(private router: Router,
@@ -49,7 +48,6 @@ export class AuthComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.authSub.unsubscribe();
   }
-
 
   authenticate() {
     const userId = this.authFormGroup.get('userId')?.value;

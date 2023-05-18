@@ -1,6 +1,6 @@
 <section class="d-flex justify-content-center align-items-center">
-  <div class="lottos">
-    <app-lotto-grid *ngFor="let panel of panels" [index]="panel"></app-lotto-grid>
+  <div class="lotto-panels">
+    <app-lotto-grid *ngFor="let panel of panels" [index]="panel" [markCount]="numberOfMarks"></app-lotto-grid>
   </div>
 </section>
 <div class="d-flex justify-content-center align-items-center mt-5">
@@ -16,7 +16,7 @@
     <span *ngIf="panel.selections.length > numberOfMarks">
       please remove {{panel.selections.length - numberOfMarks}} mark(s)
     </span>
-    <span *ngIf="panel.selections.length != 0 && panel.selections.length < numberOfMarks">
+    <span *ngIf="panel.selections.length !== 0 && panel.selections.length < numberOfMarks">
       please add {{numberOfMarks - panel.selections.length}} mark(s)
     </span>
   </div>

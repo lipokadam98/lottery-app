@@ -50,7 +50,7 @@ export class UserListService {
   }
 
   checkPassword(userId: number, password: string) {
-    let user = USERDATA.find(user => user.userId === userId && user.password === password);
+    const user = USERDATA.find(user => user.userId === userId && user.password === password);
     if (user) {
       this.authService.setUser(user);
       this.router.navigate(['']).then();
