@@ -1,0 +1,22 @@
+<div class="d-flex flex-column bg-white max-w-250 color-red">
+  <div class="d-flex justify-content-between align-items-center p-1">
+    <div class="d-flex gap-1 align-items-center justify-content-center lotto-icon" matTooltip="Véletlenszerű számok"
+         matTooltipPosition="above" (click)="generateRandom()">
+      <mat-icon>shuffle</mat-icon>
+      <span>RAND</span>
+    </div>
+    <div class="d-flex gap-1 align-items-center justify-content-center lotto-icon" matTooltip="Törlés" matTooltipPosition="above"
+         (click)="clearPanel()">
+      <mat-icon>delete</mat-icon>
+      <span>Del</span>
+    </div>
+  </div>
+  <section class="lotto-grid">
+    <div *ngFor="let num of numbers" class="check" (click)="checkNum(num.index)">
+      {{num.index}}
+      <img *ngIf="num.highlighted" alt="X" src="assets/X.svg" class="mark">
+    </div>
+    <span class="index">{{index}}</span>
+  </section>
+</div>
+

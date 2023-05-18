@@ -1,0 +1,20 @@
+.lottos{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+
+@media only screen and (max-width: 1000px) {
+  .lottos{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .lottos{
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

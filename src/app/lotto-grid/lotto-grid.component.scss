@@ -1,0 +1,65 @@
+$lottery-red: #de0018;
+
+.lotto-grid{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 10px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+  position: relative;
+  z-index: 1;
+
+  .check{
+    position: relative;
+    border: 1px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+}
+
+.mark{
+  position: absolute;
+  opacity: 60%;
+  height: 100%;
+  width: 100%;
+}
+
+.max-w-250{
+  width: 250px;
+}
+
+.index{
+  position: absolute;
+  top: 45%;
+  left: 30%;
+  font-size: 180px;
+  opacity: 20%;
+  z-index: -1;
+  font-weight: bold;
+  cursor: default;
+  color: black;
+}
+
+.color-red{
+  color: $lottery-red;
+}
+
+.highlighted{
+  background-color: lightcoral;
+}
+
+.lotto-icon{
+  cursor: pointer;
+  padding: 2px;
+  transition: 200ms;
+}
+
+.lotto-icon:hover{
+  box-shadow: 0 0 5px lightgray;
+  border-radius: 5px;
+}

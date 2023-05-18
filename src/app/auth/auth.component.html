@@ -1,0 +1,44 @@
+<section class="auth-section">
+  <form (ngSubmit)="authenticate()" [formGroup]="authFormGroup">
+    <div class="row">
+      <div class="col-sm d-flex flex-column align-items-center justify-content-center text-white">
+        <div class="d-flex gap-2 align-items-center justify-content-center">
+          <span class="text-start" style="font-size: 25px">Lottery Application</span>
+          <mat-icon>casino</mat-icon>
+        </div>
+      </div>
+      <div class="col-sm d-flex flex-column" style="min-width: 300px">
+        <mat-form-field appearance="fill">
+          <mat-label>Users</mat-label>
+          <mat-select formControlName="userSelect">
+            <mat-option *ngFor="let user of users" [value]="user.userId">
+              {{user.userName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>UserId</mat-label>
+          <input type="text" matInput formControlName="userId" placeholder="UserId">
+          <mat-error *ngIf="authFormGroup.get('userId')?.touched && authFormGroup.get('userId')?.invalid">UserId is
+            required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput formControlName="password" placeholder="Password">
+          <mat-error *ngIf="authFormGroup.get('password')?.touched && authFormGroup.get('password')?.invalid">Password
+            is required
+          </mat-error>
+
+        </mat-form-field>
+
+        <button mat-raised-button type="submit" [disabled]="authFormGroup.invalid">Login</button>
+      </div>
+    </div>
+
+
+  </form>
+  <hr>
+</section>
