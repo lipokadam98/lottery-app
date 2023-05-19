@@ -30,7 +30,6 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.userListService.loadUsers();
 
     this.userListService.getUsers().pipe(take(1)).subscribe(users => {
-      console.log(users);
       this.users = users;
     });
 
