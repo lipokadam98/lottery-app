@@ -1,23 +1,30 @@
 <section class="d-flex justify-content-center align-items-center">
-  <div class="lotto-panels">
-    <app-lotto-grid *ngFor="let panel of panels" [index]="panel" [markCount]="numberOfMarks"></app-lotto-grid>
+  <div class="main-grid">
+    <div class="lotto-panels">
+      <app-lotto-grid *ngFor="let panel of panels" [index]="panel" [markCount]="numberOfMarks"></app-lotto-grid>
+    </div>
+    <div class="d-flex flex-column bg-white p-2 selection-sticky">
+      <div class="d-flex justify-content-between align-items-center gap-2">
+        <span class="text-center fw-bold" style="font-size: 16px">Selections:</span>
+        <button mat-flat-button class="bg-danger text-white" (click)="play()">Play</button>
+      </div>
+      <div class="selections">
+        <div class="d-flex justify-content-between align-items-center"
+             *ngFor="let panel of panelSelections let i = index; ">
+          <span class="fw-bold">Panel {{i + 1}}:</span>
+          <span *ngIf="panel.selections.length === numberOfMarks">{{panel.selections}}</span>
+          <span *ngIf="panel?.selections?.length === 0">
+          empty
+       </span>
+          <span *ngIf="panel.selections.length > numberOfMarks">
+          please remove {{panel.selections.length - numberOfMarks}} X mark(s)
+        </span>
+          <span *ngIf="panel.selections.length !== 0 && panel.selections.length < numberOfMarks">
+          please add {{numberOfMarks - panel.selections.length}} X mark(s)
+        </span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
-<div class="d-flex justify-content-center align-items-center mt-5">
-  <button mat-flat-button class="bg-danger w-25" (click)="play()">Play</button>
-</div>
-<div class="d-flex justify-content-center align-items-center flex-column bg-white mt-5">
-  <div *ngFor="let panel of panelSelections let i = index; ">
-    <span class="fw-bold">Panel {{i + 1}}:</span>
-    <span *ngIf="panel.selections.length === numberOfMarks">{{panel.selections}}</span>
-    <span *ngIf="panel?.selections?.length === 0">
-      empty
-    </span>
-    <span *ngIf="panel.selections.length > numberOfMarks">
-      please remove {{panel.selections.length - numberOfMarks}} mark(s)
-    </span>
-    <span *ngIf="panel.selections.length !== 0 && panel.selections.length < numberOfMarks">
-      please add {{numberOfMarks - panel.selections.length}} mark(s)
-    </span>
-  </div>
-</div>
+

@@ -29,20 +29,18 @@ $lottery-red: #de0018;
   width: 100%;
 }
 
-.max-w-250{
-  width: 250px;
-}
-
 .index{
   position: absolute;
-  top: 45%;
-  left: 30%;
+  top: calc(50% - 90px);
   font-size: 180px;
   opacity: 20%;
   z-index: -1;
   font-weight: bold;
+  width: 100%;
   cursor: default;
   color: black;
+  line-height: 180px;
+  text-align: center;
 }
 
 .color-red{
